@@ -4,11 +4,6 @@ import java.util.LinkedList;
 import java.util.Stack;
 public class PalindromeCheckerAPP {
 
-    /*
-UC2:PalindromeCheckerApp
-@author Suchandh
-@version 1.0
- */
 
 
     public static void main(String[] args){
@@ -33,6 +28,5 @@ UC2:PalindromeCheckerApp
         System.out.println("Is Palindrome? : " + isPalindrome);
     }
 
-}
 
 
