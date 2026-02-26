@@ -7,20 +7,20 @@ UC2:PalindromeCheckerApp
 @version 1.0
  */
 
+
         public static void main(String[] args){
-           Scanner sc= new Scanner(System.in);
-            String input="madam";
-           boolean ispalindrome=true;
-           int length=input.length();
-           for (int i=0;i<input.length()/ 2 ;i++){
-               if(input.charAt(i)!=input.charAt(input.length()-1-i)) {
-                   ispalindrome = false;
-                   break;
-               }
-           }
-           System.out.println("input text: "+input);
-           System.out.println("it is palindrome? :" +ispalindrome);
+            String name="madam";
+            String reverse="";
+            for(int i=name.length()-1;i>=0;i--){
+                reverse=reverse+name.charAt(i);
+            }
+            boolean ispalindrome=name.equals(reverse);
+            System.out.println("Input text : "+name);
+            System.out.println("Reversed text : "+reverse);
+            System.out.print("Is it a Palindrome? : "+ ispalindrome);
 
         }
-    }
+
+}
+
 
