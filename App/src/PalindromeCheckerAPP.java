@@ -12,11 +12,12 @@ interface PalindromeStrategy {
 class StackStrategy implements PalindromeStrategy {
     @Override
     public boolean check(String input) {
+        String normalized = input.toLowerCase();
         java.util.Stack<Character> stack = new java.util.Stack<>();
-        for (char c : input.toCharArray()) {
+        for (char c : normalized.toCharArray()) {
             stack.push(c);
         }
-        for (char c : input.toCharArray()) {
+        for (char c : normalized.toCharArray()) {
             if (c != stack.pop()) {
                 return false;
             }
@@ -24,43 +25,19 @@ class StackStrategy implements PalindromeStrategy {
         return true;
     }
 }
-class TwoPointerStrategy implements PalindromeStrategy {
-    @Override
-    public boolean check(String input) {
-        int start = 0;
-        int end = input.length() - 1;
-        while (start < end) {
-            if (input.charAt(start) != input.charAt(end)) {
-                return false;
-            }
-            start++;
-            end--;
-        }
-        return true;
-    }
-}
-
-class PalindromeContext {
-    private PalindromeStrategy strategy;
-
-    public void setStrategy(PalindromeStrategy strategy) {
-        this.strategy = strategy;
-    }
-
-    public boolean executeStrategy(String input) {
-        return strategy.check(input);
-    }
-}
-
 public class PalindromeCheckerAPP {
     public static void main(String[] args) {
-        String input = "level";
-        PalindromeContext context = new PalindromeContext();
+        String input = "Level";
+        PalindromeStrategy strategy = new StackStrategy();
 
-        context.setStrategy(new StackStrategy());
-        System.out.println("Using Stack Strategy: " + context.executeStrategy(input));
+        long startTime = System.nanoTime();
+        boolean isPalindrome = strategy.check(input);
+        long endTime = System.nanoTime();
 
-        context.setStrategy(new TwoPointerStrategy());
-        System.out.println("Using Two-Pointer Strategy: " + context.executeStrategy(input));
+        long duration = endTime - startTime;
+
+        System.out.println("Input: " + input);
+        System.out.println("Is Palindrome?: " + isPalindrome);
+        System.out.println("Execution Time: " + duration + " ns");
     }
 }
